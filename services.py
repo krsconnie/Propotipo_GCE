@@ -391,3 +391,24 @@ class ConvivenciaApplicationService:
         reporte = self._repo.guardar_reporte(reporte)
         print(f"[{COMPONENT}] -> Reporte #{reporte.id_reporte} de estudiante generado.")
         return reporte
+
+# Cumple UC13 — Consultar auditoría
+    def generar_auditoria_estudiante(self, id_estudiante: int) -> Optional[Reporte]:
+        """
+        UC13 — Permite al estudiante (o auditores) revisar el historial 
+        de acciones y estados de sus casos para asegurar transparencia.
+        """
+        print(f"\n[{COMPONENT}] -> Generando registro de auditoría para estudiante #{id_estudiante}.")
+        
+        # Recuperamos todo, incluso lo "eliminado" para transparencia total (RF8)
+        casos = [c for c in self._repo.listar_casos(incluir_eliminados=True) 
+                 if c.id_estudiante == id_estudiante]
+        
+        lineas = [f"═══ REGISTRO DE AUDITORÍA — ESTUDIANTE #{id_estudiante} ═══"]
+        for c in casos:
+            audit_status = "[ELIMINADO LÓGICAMENTE]" if c.eliminado else f"[{c.estado}]"
+            lineas.append(f"  • Caso #{c.id_caso} {audit_status}: {c.descripcion[:60]}")
+            lineas.append(f"    - Inicio: {c.fecha_inicio} | Cierre: {c.fecha_cierre or 'N/A'}")
+        
+        reporte = Reporte(id_reporte=0, id_estudiante=id_estudiante, contenido="\n".join(lineas))
+        return self._repo.guardar_reporte(reporte)

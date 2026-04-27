@@ -100,6 +100,10 @@ def ejecutar_simulacion() -> None:
     ctrl_reportes.get_reporte_estudiante(1)
     ok("UC10/UC7: Reportes generados.")
 
+    # UC13 — Consultar auditoría (NUEVO)
+    r_aud = ctrl_reportes.get_auditoria(1)
+    if r_aud["success"]: ok("UC13: Reporte de auditoría de estudiante generado.")
+
     # UC2 — Cierre de Caso
     r_fin = ctrl_casos.patch_cerrar_caso(r_caso["data"].id_caso, coordinador)
     if r_fin["success"]: ok(f"UC2: Simulación terminada. Caso #{r_fin['data'].id_caso} cerrado.")

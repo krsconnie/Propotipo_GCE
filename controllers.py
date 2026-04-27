@@ -220,3 +220,11 @@ class ControladorReportes:
             print(f"[{COMPONENT_REPORTES}] -> 200 OK: Reporte #{reporte.id_reporte} entregado.")
             return _response(True, data=reporte, message="Reporte generado.")
         return _response(False, message="No se encontró el estudiante.")
+
+    def get_auditoria(self, id_estudiante: int) -> dict:
+            """GET /reportes/auditoria/{id} — UC13: Consulta de auditoría para estudiantes."""
+            print(f"\n[{COMPONENT_REPORTES}] -> GET /reportes/auditoria/{id_estudiante} recibido.")
+            reporte = self._service.generar_auditoria_estudiante(id_estudiante)
+            if reporte:
+                return _response(True, data=reporte, message="Auditoría generada.")
+            return _response(False, message="Error al generar auditoría.")
