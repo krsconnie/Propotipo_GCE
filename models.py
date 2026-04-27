@@ -5,8 +5,7 @@ Sistema de Gestión de Convivencia Escolar — Panoptes
 Glosario oficial:
   · Hito    : Unidad atómica de seguimiento dentro de un Caso. Registra un
               hecho concreto, verificable y fechado en la evolución del caso.
-  · Incidente: Observación previa registrada por un Productor (ProfesorJefe o
-              Inspector) que puede o no derivar en un Caso formal.
+  · Incidente: Observación previa registrada por un Productor  que puede o no derivar en un Caso formal.
 """
 
 from dataclasses import dataclass, field
@@ -49,12 +48,6 @@ class ProfesorJefe:
 
 
 @dataclass
-class Inspector:
-    id_inspector: int
-    nombre: str
-
-
-@dataclass
 class Coordinador:
     id_coordinador: int
     nombre: str
@@ -93,13 +86,13 @@ class Hito:
 @dataclass
 class Incidente:
     """
-    Observación previa registrada por un Productor (ProfesorJefe o Inspector)
+    Observación previa registrada por un Productor 
     que puede o no derivar en un Caso formal. (Glosario)
     """
     id_incidente: int
     descripcion: str
     id_estudiante: int
-    id_productor: int          # quien reporta (ProfesorJefe o Inspector)
+    id_productor: int          # quien reporta 
     gravedad: NivelGravedad = NivelGravedad.LEVE
     fecha: date = field(default_factory=date.today)
     id_caso_asociado: Optional[int] = None

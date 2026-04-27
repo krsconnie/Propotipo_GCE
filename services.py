@@ -249,10 +249,10 @@ class ConvivenciaApplicationService:
             if inc and inc.id_productor not in ids_productores_vistos:
                 ids_productores_vistos.add(inc.id_productor)
                 involucrados.append(Involucrado(
-                    rol="Productor (Observación previa)",
+                    rol="Productor", 
                     id_persona=inc.id_productor,
                     nombre=f"Productor ID#{inc.id_productor}",
-                    detalle=f"Observación previa #{inc.id_incidente} — gravedad {inc.gravedad}",
+                    detalle=f"Generó la observación previa #{inc.id_incidente}",
                 ))
 
         # Coordinador
