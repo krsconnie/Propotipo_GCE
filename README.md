@@ -1,4 +1,4 @@
-# Propotipo Contenedor Backend Panoptes
+# Propotipo Panoptes
 
 Panoptes es una solución de software diseñada para la gestión de convivencia dentro de un recinto educacional ficticio "San penquista". Este prototipo representa el **Backend MVP** del sistema, enfocado en validar la lógica del proyecto y la arquitectura propuesta. Generado con el modelo de intelingencia artificial Claude Sonnet 4.6.
 
